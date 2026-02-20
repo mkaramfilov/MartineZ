@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunapark MartineZ | Емоция и Забавление</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #120422;      /* Още по-дълбоко лилаво */
+            --secondary: #1d0936;    /* Меко лилаво за карти */
+            --accent: #00d2ff;       /* Неоново синьо */
+            --glow: rgba(0, 210, 255, 0.5);
+            --text: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Righteous', cursive;
+            font-weight: normal;
+        }
+
+        /* МЕНЮ */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 4, 34, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 30px; }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent);
+        }
+
+        /* HERO СЕКЦИЯ */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.4);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            line-height: 1;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .btn-main {
+            padding: 16px 45px;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .btn-main:hover {
+            background: var(--accent);
+            color: var(--primary);
+            box-shadow: 0 0 25px var(--glow);
+            transform: translateY(-3px);
+        }
+
+        /* АТРАКЦИИ */
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            padding: 100px 0 50px;
+            letter-spacing: 2px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 0 8%;
+            margin-bottom: 100px;
+        }
+
+        .card {
+            background: var(--secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        /* Стил за видео и снимки в картите */
+        .card img, .card video {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .card:hover img, .card:hover video { 
+            filter: grayscale(0%); 
+        }
+
+        .card-info { padding: 30px; flex-grow: 1; }
+
+        .card-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .card-info p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .age-tag {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            margin-top: 20px;
+            color: var(--accent);
+        }
+
+        /* GRILL СЕКЦИЯ */
+        .grill-section {
+            background: linear-gradient(rgba(18,4,34,0.85), rgba(18,4,34,0.85)), 
+                        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1920');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 120px 10%;
+            text-align: center;
+        }
+
+        .grill-section h2 { font-size: 3.5rem; color: #ffae00; margin-bottom: 25px; }
+
+        /* ГАЛЕРИЯ */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 0 8% 100px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* ПРОМОЦИИ */
+        .promo-banner {
+            background: var(--secondary);
+            margin: 0 8% 100px;
+            padding: 60px;
+            border-radius: 20px;
+            border-left: 5px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .promo-text h2 { font-size: 2.2rem; margin-bottom: 10px; }
+
+        /* ФУТЪР */
+        footer {
+            background: #0a0214;
+            padding: 80px 8% 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-box h3 { font-size: 1.2rem; margin-bottom: 25px; color: var(--accent); }
+        .footer-box p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 12px; }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            nav ul { display: none; } 
+            .hero-content h1 { font-size: 3.2rem; }
+            .promo-banner { flex-direction: column; text-align: center; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MartineZ</div>
+        <ul>
+            <li><a href="#home">Начало</a></li>
+            <li><a href="#attractions">Атракции</a></li>
+            <li><a href="#grill">Грил</a></li>
+            <li><a href="#gallery">Галерия</a></li>
+            <li><a href="#promotions">Оферти</a></li>
+            <li><a href="#contact">Контакти</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="drone-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Lunapark MartineZ</h1>
+            <p>Забавление за цялото семейство</p>
+            <a href="#attractions" class="btn-main">Виж атракциите</a>
+        </div>
+    </section>
+
+    <section id="attractions">
+        <h2 class="section-title">НАШИТЕ АТРАКЦИИ</h2>
+        <div class="grid-container">
+            
+            <div class="card">
+                <video autoplay muted loop playsinline>
+                    <source src=IMG_8584.mp4 type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>TOP SPIN</h3>
+                    <p>Изпитайте гравитацията с нашето най-екстремно съоръжение. 360-градусово завъртане!</p>
+                    <span class="age-tag">12+ ГОДИНИ</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <video autoplay muted loop playsinline>
+                    <source src=IMG_1735.mp4 type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>HULLY GULLY</h3>
+                    <p>Ритъм, музика и скорост. Любимата семейна класика, която никога не остарява.</p>
+                    <span class="age-tag">7+ ГОДИНИ</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <video autoplay muted loop playsinline>
+                    <source src=export_1714075422524.mp4 type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>PARATROOPER</h3>
+                    <p>Полет в открито небе. Усетете вятъра, докато се реете над светлините на лунапарка.</p>
+                    <span class="age-tag">7+ ГОДИНИ</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <video autoplay muted loop playsinline>
+                    <source src=IMG_8936.mp4 type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>MINI SHIP</h3>
+                    <p>Приключение за малките пирати! Безопасно и вълнуващо плаване в небето.</p>
+                    <span class="age-tag">4+ ГОДИНИ</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <video autoplay muted loop playsinline>
+                    <source src="carousel.mp4" type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>CAROUSEL</h3>
+                    <p>Класическа въртележка с магически светлини и музика. Вечно забавление за всяко дете.</p>
+                    <span class="age-tag">3+ ГОДИНИ</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="trampolines.jpg" alt="Trampolines">
+                <div class="card-info">
+                    <h3>TRAMPOLINES</h3>
+                    <p>Скачай до небето! Зона с професионални трамплини и гигантски надуваеми батути за безкрайна енергия.</p>
+                    <span class="age-tag">ВСИЧКИ ВЪЗРАСТИ</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="grill" class="grill-section">
+        <h2>Grill MartineZ</h2>
+         <div class="gallery-container">
+            <div class="gallery-item"><img src=grill1.jpg></div>
+            <div class="gallery-item"><img src=grill2.jfif></div>
+            <div class="gallery-item"><img src=grill3.jpeg></div>
+            <div class="gallery-item"><img src=IMG_2460.png></div>
+        <p style="max-width: 700px; margin: 0 auto 40px; font-weight: 300;">След адреналина идва време за най-добрата скара! Прясно приготвено месо, топли питки и незабравим аромат.</p>
+        <a href="#contact" class="btn-main">ВИЖ МЕНЮТО</a>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">ГАЛЕРИЯ</h2>
+        <div class="gallery-container">
+            <div class="gallery-item"><img src=IMG_1273.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1277.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1276.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1278.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1282.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1280.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1279.jpeg></div>
+            <div class="gallery-item"><img src=IMG_2528.jpeg></div>
+            <div class="gallery-item"><img src=IMG_2460.png></div>
+            <div class="gallery-item"><img src=IMG_8793.jpeg></div>
+            <div class="gallery-item"><img src=IMG_1275.jpeg></div>
+        </div>
+    </section>
+
+    <section id="promotions">
+        <div class="promo-banner">
+            <div class="promo-text">
+                <h2>СЕМЕЕН ПАКЕТ 🎡</h2>
+                <p>Вземи 12 жетона на цената на 10. Забавление за всички!</p>
+            </div>
+            <a href="#contact" class="btn-main">КУПИ СЕГА</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-box">
+                <h3>MartineZ</h3>
+                <p>Вашето място за усмивки и адреналин от ново поколение.</p>
+            </div>
+            <div class="footer-box">
+                <h3>ЛОКАЦИЯ</h3>
+                <p><i class="fas fa-map-marker-alt"></i> гр. Варна,</p>
+                <p><i class="fas fa-phone"></i> +359 898469356</p>
+                 <p><i class="fas e-mail"></i>e-mail:   lunaparkmartinez@info.com</p>
+            </div>
+            <div class="footer-box">
+                <h3>РАБОТНО ВРЕМЕ</h3>
+                <p>Всеки ден: 10:00 - 23:00</p>
+                <p>Вход: Свободен</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 50px; font-size: 0.7rem; opacity: 0.4;">&copy; 2024 Lunapark MartineZ. Всички права запазени.</p>
+    </footer>
+
+    <script>
+        // Плавно скролване
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
